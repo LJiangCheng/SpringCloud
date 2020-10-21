@@ -1,4 +1,4 @@
-package com.springboot.cloud.gateway.service;
+package com.springboot.cloud.gateway.service.spec;
 
 import org.springframework.cloud.gateway.route.RouteDefinition;
 

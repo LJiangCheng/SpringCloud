@@ -1,0 +1,40 @@
+#SpringCloud配置文件加载顺序：bootstrap -> application.yml -> application-xxx.yml -> application-xxx.properties后面的覆盖前面的
+#多环境需要启动时通过命令行参数设置全局变量，如：
+#java -jar -server -DREGISTER_HOST=114.67.110.153 -Dspring.profiles.active=online  C:\Users\toolmall\Desktop\organization-0.0.1-SNAPSHOT.jar
+server:
+  port: ${SERVER_PORT:8010}
+spring:
+  application:
+    name: organization
+  cloud:
+    nacos:
+      discovery:
+        #${REGISTER_HOST:localhost}读取环境变量，如果没有则使用默认值
+        #默认使用线上值，其他环境启动时通过-DREGISTER_HOST=114.67.110.153传入参数
+        server-addr: ${REGISTER_HOST:192.168.0.3}:${REGISTER_PORT:8848}
+      config:
+        server-addr: ${REGISTER_HOST:192.168.0.3}:${REGISTER_PORT:8848}
+        file-extension: yml
+
+#更多的启动参数设置示例：
+#  -server
+#  -Dspring.profiles.active=test
+#  -Djavax.net.debug=ssl
+#  -Djava.compiler=NONE
+#  -Xdebug
+#  -Xnoagent
+#  -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8888
+#  -Xmx2g
+#  -Xms2g
+#  -Xmn512m
+#  -Xss512k
+#  -XX:+DisableExplicitGC
+#  -XX:+UseConcMarkSweepGC
+#  -XX:+CMSParallelRemarkEnabled
+#  -XX:LargePageSizeInBytes=128m
+#  -XX:+UseFastAccessorMethods
+#  -XX:+UseCMSInitiatingOccupancyOnly
+#  -XX:CMSInitiatingOccupancyFraction=70
+#  -Duser.timezone=GMT+8
+#  -XX:PermSize
+#  -XX:+UseCMSCompactAtFullCollection

@@ -3,7 +3,7 @@ package com.springboot.cloud.gateway.service.impl;
 import com.alicp.jetcache.Cache;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CreateCache;
-import com.springboot.cloud.gateway.service.IRouteService;
+import com.springboot.cloud.gateway.service.spec.IRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +44,7 @@ public class RouteService implements IRouteService {
         }
         log.info("预计初使化路由, gatewayKeys：{}", gatewayKeys);
         // 去掉key的前缀
-        Set<String> gatewayKeyIds = gatewayKeys.stream().map(key -> {
-            return key.replace(GATEWAY_ROUTES, StringUtils.EMPTY);
-        }).collect(Collectors.toSet());
+        Set<String> gatewayKeyIds = gatewayKeys.stream().map(key -> key.replace(GATEWAY_ROUTES, StringUtils.EMPTY)).collect(Collectors.toSet());
         Map<String, RouteDefinition> allRoutes = gatewayRouteCache.getAll(gatewayKeyIds);
         log.info("gatewayKeys：{}", allRoutes);
         // 以下代码原因是，jetcache将RouteDefinition返序列化后，uri发生变化，未初使化，导致路由异常，以下代码是重新初使化uri

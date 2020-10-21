@@ -1,0 +1,29 @@
+
+##目标：搭建可用的微服务架构及相关组件##
+
+##SpringCloud组件
+1. GateWay 网关 predict、filter、限流  后台服务总入口
+2. nacos 服务注册和发现、热加载配置中心
+3. sentinal 流量控制、熔断降级
+4. fegin 服务调用
+5. SpringBoot Admin 服务状态监控
+
+##运维和服务器--
+1. jenkins 持续交付和集成
+2. docker 容器化
+3. nginx 反向代理
+
+##第三方组件--
+1. redis、rabbitMQ、elasticSearch、mysql
+
+##功能模块
+1. auth权限服务
+2. 商品服务
+3. 消息中心
+
+##服务和组件部署情况--
+1. jenkins
+	数据位置：/var/lib/jenkins
+	配置文件：/etc/sysconfig/jenkins
+2. redis
+	配置文件：/root/software/redis-5.0.5/bin/redis.conf
