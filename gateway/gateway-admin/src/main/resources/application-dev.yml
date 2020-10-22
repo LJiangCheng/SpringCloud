@@ -1,19 +1,25 @@
 spring:
   rabbitmq:
-    host: ${RABBIT_MQ_HOST:localhost}
+    host: ${RABBIT_MQ_HOST:114.67.110.153}
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
   redis:
-    host: ${REDIS_HOST:localhost}
+    host: ${REDIS_HOST:114.67.110.153}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:129374}
     lettuce:
       pool:
         max-active: 300
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:114.67.110.153}:${DATASOURCE_PORT:3306}/sc_gateway?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:123456}
+
 jetcache:
-  statIntervalMinutes: 1
+  statIntervalMinutes: 15
   areaInCacheName: false
   hidePackages: com.springboot.cloud
   local:
@@ -32,6 +38,6 @@ jetcache:
         minIdle: 5
         maxIdle: 20
         maxTotal: 50
-      host: ${REDIS_HOST:localhost}
+      host: ${REDIS_HOST:114.67.110.153}
       port: ${REDIS_PORT:6379}
       password: ${REDIS_PASSWORD:129374}

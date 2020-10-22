@@ -34,3 +34,4 @@ jetcache:
         maxTotal: 50
       host: ${REDIS_HOST:114.67.110.153}
       port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:129374}
