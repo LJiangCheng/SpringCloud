@@ -46,7 +46,7 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
         // 转化为gateway需要的类型，缓存到redis, 并事件通知各网关应用
         RouteDefinition routeDefinition = gatewayRouteToRouteDefinition(gatewayRoute);
         gatewayRouteCache.put(gatewayRoute.getRouteId(), routeDefinition);
-        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition);
+        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition, "add");
         return isSuccess;
     }
 
@@ -55,7 +55,7 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
         GatewayRoute gatewayRoute = this.getById(id);
         // 删除redis缓存, 并事件通知各网关应用
         gatewayRouteCache.remove(gatewayRoute.getRouteId());
-        eventSender.send(BusConfig.ROUTING_KEY, gatewayRouteToRouteDefinition(gatewayRoute));
+        eventSender.send(BusConfig.ROUTING_KEY, gatewayRouteToRouteDefinition(gatewayRoute), "del");
         return this.removeById(id);
     }
 
@@ -65,7 +65,7 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
         // 转化为gateway需要的类型，缓存到redis, 并事件通知各网关应用
         RouteDefinition routeDefinition = gatewayRouteToRouteDefinition(gatewayRoute);
         gatewayRouteCache.put(gatewayRoute.getRouteId(), routeDefinition);
-        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition);
+        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition, "update");
         return isSuccess;
     }
 
