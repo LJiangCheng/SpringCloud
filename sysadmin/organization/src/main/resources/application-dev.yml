@@ -1,0 +1,36 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:114.67.110.153}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+  redis:
+    host: ${REDIS_HOST:114.67.110.153}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:129374}
+    lettuce:
+      pool:
+        max-active: 300
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:114.67.110.153}:${DATASOURCE_PORT:3306}/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:123456}
+
+jetcache:
+  remote:
+    # 默认2小时的远程缓存
+    default:
+      host: ${REDIS_HOST:114.67.110.153}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:129374}
+    # 长时远程緩存，主要用于要求时效要求一般的集中式缓存
+    longTime:
+      host: ${REDIS_HOST:114.67.110.153}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:129374}
+    # 短時远程緩存，主要用于要求时效较高的集中式缓存
+    shortTime:
+      host: ${REDIS_HOST:114.67.110.153}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:129374}

@@ -1,25 +1,10 @@
 spring:
+  profiles:
+    active: dev
   cloud:
     bus:
       trace:
         enabled: true
-  rabbitmq:
-    host: ${RABBIT_MQ_HOST:localhost}
-    port: ${RABBIT_MQ_PORT:5672}
-    username: ${RABBIT_MQ_USERNAME:guest}
-    password: ${RABBIT_MQ_PASSWORD:guest}
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    lettuce:
-      pool:
-        max-active: 300
-    #password: ${REDIS_PASSWORD:123456}
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
-    username: ${DATASOURCE_USERNAME:root}
-    password: ${DATASOURCE_PASSWORD:root123}
   zipkin:
     enabled: true
     sender:
@@ -73,8 +58,6 @@ jetcache:
         minIdle: 5
         maxIdle: 20
         maxTotal: 50
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
     # 长时远程緩存，主要用于要求时效要求一般的集中式缓存
     longTime:
       type: redis
@@ -86,8 +69,6 @@ jetcache:
         minIdle: 5
         maxIdle: 20
         maxTotal: 50
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
     # 短時远程緩存，主要用于要求时效较高的集中式缓存
     shortTime:
       type: redis
@@ -99,8 +80,6 @@ jetcache:
         minIdle: 5
         maxIdle: 20
         maxTotal: 50
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
 
 management:
   endpoints:

@@ -33,7 +33,7 @@ public class RouteService implements IRouteService {
     @CreateCache(name = GATEWAY_ROUTES, cacheType = CacheType.REMOTE)
     private Cache<String, RouteDefinition> gatewayRouteCache;
 
-    private Map<String, RouteDefinition> routeDefinitionMaps = new HashMap<>();
+    private final Map<String, RouteDefinition> routeDefinitionMaps = new HashMap<>();
 
     @PostConstruct
     private void loadRouteDefinition() {

@@ -18,10 +18,14 @@ import java.util.Map;
 @Slf4j
 public class BusReceiver extends AbstractAdaptableMessageListener {
 
+    private final IRouteService routeService;
+    private final MessageConverter converter;
+
     @Autowired
-    private IRouteService routeService;
-    @Autowired
-    private MessageConverter converter;
+    public BusReceiver(IRouteService routeService, MessageConverter converter) {
+        this.routeService = routeService;
+        this.converter = converter;
+    }
 
     @Override
     public void onMessage(Message message, Channel channel) {
