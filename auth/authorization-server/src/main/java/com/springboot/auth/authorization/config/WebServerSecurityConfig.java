@@ -22,13 +22,14 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("userDetailsService")
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+    private final UserDetailsService mobileUserDetailsService;
 
-    @Autowired
-    @Qualifier("mobileUserDetailsService")
-    private UserDetailsService mobileUserDetailsService;
+    public WebServerSecurityConfig(@Qualifier("userDetailsService") UserDetailsService userDetailsService,
+                                   @Qualifier("mobileUserDetailsService") UserDetailsService mobileUserDetailsService) {
+        this.userDetailsService = userDetailsService;
+        this.mobileUserDetailsService = mobileUserDetailsService;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

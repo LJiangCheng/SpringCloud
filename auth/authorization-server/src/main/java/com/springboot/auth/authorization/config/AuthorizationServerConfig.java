@@ -37,23 +37,23 @@ import java.util.List;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("authenticationManagerBean")
-    private AuthenticationManager authenticationManager;
-
-    @Qualifier("dataSource")
-    @Autowired
-    DataSource dataSource;
-
-    @Autowired
-    @Qualifier("userDetailsService")
-    UserDetailsService userDetailsService;
+    private final AuthenticationManager authenticationManager;
+    private final DataSource dataSource;
+    private final UserDetailsService userDetailsService;
 
     /**
      * jwt 对称加密密钥
      */
     @Value("${spring.security.oauth2.jwt.signingKey}")
     private String signingKey;
+
+    public AuthorizationServerConfig(@Qualifier("authenticationManagerBean") AuthenticationManager authenticationManager,
+                                     @Qualifier("dataSource") DataSource dataSource,
+                                     @Qualifier("userDetailsService") UserDetailsService userDetailsService) {
+        this.authenticationManager = authenticationManager;
+        this.dataSource = dataSource;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
