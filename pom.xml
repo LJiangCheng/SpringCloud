@@ -24,18 +24,18 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--支持Spring Boot 2.1.X-->
+            <!--支持Spring Boot 2.2.X-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.1.10.RELEASE</version>
+                <version>2.2.7.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
+                <version>Hoxton.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
