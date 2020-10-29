@@ -1,5 +1,6 @@
 package com.springboot.cloud.gateway.exception;
 
+import com.netflix.ribbon.proxy.annotation.Http;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
@@ -42,7 +43,7 @@ public class CustomErrorWebExceptionHandler extends DefaultErrorWebExceptionHand
     @Override
     protected Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
         Map<String, Object> error = getErrorAttributes(request, isIncludeStackTrace(request, MediaType.ALL));
-        HttpStatus errorStatus = getHttpStatus(error);
+        HttpStatus errorStatus = HttpStatus.valueOf(getHttpStatus(error));
         Throwable throwable = getError(request);
         return ServerResponse.status(errorStatus)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
