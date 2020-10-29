@@ -5,6 +5,7 @@ import com.springboot.auth.authorization.provider.SmsCodeProvider;
 import com.springboot.auth.authorization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,14 @@ import org.springframework.stereotype.Service;
 @Service("mobileUserDetailsService")
 public class MobileUserDetailsService extends CustomUserDetailsService {
 
+    private final IUserService userService;
+    private final SmsCodeProvider smsCodeProvider;
+
     @Autowired
-    private IUserService userService;
-    @Autowired
-    private SmsCodeProvider smsCodeProvider;
+    public MobileUserDetailsService(IUserService userService, SmsCodeProvider smsCodeProvider) {
+        this.userService = userService;
+        this.smsCodeProvider = smsCodeProvider;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String uniqueId) {

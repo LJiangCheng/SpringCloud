@@ -7,12 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class SmsCodeProviderFallback implements SmsCodeProvider {
 
+    /*private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    PasswordEncoder passwordEncoder;
+    public SmsCodeProviderFallback(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }*/
 
     @Override
     public String getSmsCode(String mobile, String businessType) {
         // 该类为mock, 目前暂时没有sms的服务
-        return passwordEncoder.encode("123456");
+        //return passwordEncoder.encode("123456");
+        return "";
     }
 }
