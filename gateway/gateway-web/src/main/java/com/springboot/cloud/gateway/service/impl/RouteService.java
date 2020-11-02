@@ -27,16 +27,19 @@ public class RouteService implements IRouteService {
 
     private static final String GATEWAY_ROUTES = "gateway_routes::";
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
     @CreateCache(name = GATEWAY_ROUTES, cacheType = CacheType.REMOTE)
     private Cache<String, RouteDefinition> gatewayRouteCache;
 
     private final Map<String, RouteDefinition> routeDefinitionMaps = new HashMap<>();
 
-    @PostConstruct
-    private void loadRouteDefinition() {
+    private final StringRedisTemplate stringRedisTemplate;
+
+    public RouteService(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
+
+    @Override
+    public void loadRouteDefinition() {
         log.info("loadRouteDefinition, 开始初始化路由");
         Set<String> gatewayKeys = stringRedisTemplate.keys(GATEWAY_ROUTES + "*");
         if (CollectionUtils.isEmpty(gatewayKeys)) {

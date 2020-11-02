@@ -7,14 +7,25 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/info")
 public class GatewayInfoController {
 
+    private final IRouteService routeService;
+
     @Autowired
-    private IRouteService routeService;
+    public GatewayInfoController(IRouteService routeService) {
+        this.routeService = routeService;
+    }
+
+    @RequestMapping("loadRoutes")
+    public Result loadRoutes() {
+        routeService.loadRouteDefinition();
+        return Result.success();
+    }
 
     @RequestMapping("/routes")
     public Result getRouteDefinitions() {
