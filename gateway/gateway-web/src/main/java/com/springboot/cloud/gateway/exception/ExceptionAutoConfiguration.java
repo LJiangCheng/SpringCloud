@@ -28,15 +28,11 @@ import java.util.List;
 @EnableConfigurationProperties({ServerProperties.class, ResourceProperties.class})
 public class ExceptionAutoConfiguration {
 
-    private ServerProperties serverProperties;
-
-    private ApplicationContext applicationContext;
-
-    private ResourceProperties resourceProperties;
-
-    private List<ViewResolver> viewResolvers;
-
-    private ServerCodecConfigurer serverCodecConfigurer;
+    private final ServerProperties serverProperties;
+    private final ApplicationContext applicationContext;
+    private final ResourceProperties resourceProperties;
+    private final List<ViewResolver> viewResolvers;
+    private final ServerCodecConfigurer serverCodecConfigurer;
 
     public ExceptionAutoConfiguration(ServerProperties serverProperties,
                                       ResourceProperties resourceProperties,
@@ -46,8 +42,7 @@ public class ExceptionAutoConfiguration {
         this.serverProperties = serverProperties;
         this.applicationContext = applicationContext;
         this.resourceProperties = resourceProperties;
-        this.viewResolvers = viewResolversProvider
-                .getIfAvailable(() -> Collections.emptyList());
+        this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
         this.serverCodecConfigurer = serverCodecConfigurer;
     }
 

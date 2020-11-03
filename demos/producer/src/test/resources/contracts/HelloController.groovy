@@ -14,12 +14,11 @@ Contract.make {
         status 200
         body("""
   {
-    "code": "000000",
-    "mesg": "处理成功"
+    "code": "000000"
   }
   """)
         headers {
-            header('Content-Type': 'application/json;charset=UTF-8')
+            header('Content-Type': 'application/json')
         }
     }
 }

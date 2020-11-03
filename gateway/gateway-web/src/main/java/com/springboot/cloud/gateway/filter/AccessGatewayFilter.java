@@ -32,11 +32,14 @@ public class AccessGatewayFilter implements GlobalFilter {
     /**
      * 由authentication-client模块提供签权的feign客户端
      */
-    @Autowired
-    private IAuthService authService;
+    private final IAuthService authService;
+    private final IPermissionService permissionService;
 
     @Autowired
-    private IPermissionService permissionService;
+    public AccessGatewayFilter(IAuthService authService, IPermissionService permissionService) {
+        this.authService = authService;
+        this.permissionService = permissionService;
+    }
 
     /**
      * 1.首先网关检查token是否有效，无效直接返回401，不调用签权服务

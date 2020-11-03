@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 
-@FeignClient(name = "organizationProvider", fallback = OrganizationProviderFallback.class)
+@FeignClient(name = "organization", fallback = OrganizationProviderFallback.class)
 public interface OrganizationProvider {
 
     @GetMapping(value = "/user")
