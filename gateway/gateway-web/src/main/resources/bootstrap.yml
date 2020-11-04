@@ -12,4 +12,8 @@ spring:
         file-extension: yml
     sentinel:
       transport:
+        port: ${SENTINEL_PORT:8719}
         dashboard: ${SENTINEL_DASHBOARD_HOST:114.67.110.153}:${SENTINEL_DASHBOARD_PORT:8021}
+feign:
+  sentinel:
+    enabled: true

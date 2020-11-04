@@ -43,9 +43,10 @@ logging:
     com.springboot.cloud: debug
     org.springframework.web: debug
     org.springframework.security: debug
-  path: logs/
   file:
     max-size: 1GB
+    #相对路径，根目录下的logs目录。也可配置绝对路径
+    path: logs/
 
 management:
   endpoints:
