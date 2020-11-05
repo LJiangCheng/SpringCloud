@@ -15,6 +15,7 @@ public class FeignSentinelConfig {
     /**
      * sentinel代理FeignClient时发生异常，找不到HttpMessageConverters实例
      * 但是sentinel居然把异常吃了ORZ...还要debug才能看到
+     * ConditionalOnMissingBean 当指定的bean不存在时才实例化当前bean
      */
     @Bean
     @ConditionalOnMissingBean
