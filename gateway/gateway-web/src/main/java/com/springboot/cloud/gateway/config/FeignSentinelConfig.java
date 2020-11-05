@@ -10,8 +10,12 @@ import org.springframework.http.converter.HttpMessageConverter;
 import java.util.stream.Collectors;
 
 @Configuration
-public class FeignConfig {
+public class FeignSentinelConfig {
 
+    /**
+     * sentinel代理FeignClient时发生异常，找不到HttpMessageConverters实例
+     * 但是sentinel居然把异常吃了ORZ...还要debug才能看到
+     */
     @Bean
     @ConditionalOnMissingBean
     public HttpMessageConverters messageConverters(ObjectProvider<HttpMessageConverter<?>> converters) {
