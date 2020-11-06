@@ -14,6 +14,3 @@ spring:
       transport:
         port: ${SENTINEL_PORT:8719}
         dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
-feign:
-  sentinel:
-    enabled: true
