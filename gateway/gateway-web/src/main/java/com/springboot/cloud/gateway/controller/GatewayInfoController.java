@@ -23,7 +23,7 @@ public class GatewayInfoController {
 
     @RequestMapping("loadRoutes")
     public Result loadRoutes() {
-        routeService.loadRouteDefinition();
+        routeService.loadRouteDefinition(null);
         return Result.success();
     }
 
@@ -31,7 +31,7 @@ public class GatewayInfoController {
     public Result getRouteDefinitions() {
         Collection<RouteDefinition> routeDefinitions = routeService.getRouteDefinitions();
         if (CollectionUtils.isEmpty(routeDefinitions)) {
-            routeService.loadRouteDefinition();
+            routeService.loadRouteDefinition(null);
             routeDefinitions = routeService.getRouteDefinitions();
         }
         return Result.success(routeDefinitions);
