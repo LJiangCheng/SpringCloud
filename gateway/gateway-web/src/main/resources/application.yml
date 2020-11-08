@@ -30,6 +30,7 @@ spring:
             rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
             key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
 
+#打开sentinel对feign的支持
 feign:
   sentinel:
     enabled: true

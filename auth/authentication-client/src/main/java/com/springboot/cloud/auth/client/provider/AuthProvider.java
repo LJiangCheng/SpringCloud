@@ -1,6 +1,7 @@
 package com.springboot.cloud.auth.client.provider;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,7 @@ public interface AuthProvider {
     Result auth(@RequestHeader(HttpHeaders.AUTHORIZATION) String authentication, @RequestParam("url") String url, @RequestParam("method") String method);
 
     @Component
+    @Slf4j
     class AuthProviderFallback implements AuthProvider {
         /**
          * 降级统一返回无权限
@@ -47,6 +49,7 @@ public interface AuthProvider {
          */
         @Override
         public Result auth(String authentication, String url, String method) {
+            log.warn("AuthProvider.auth服务降级！");
             return Result.fail();
         }
     }

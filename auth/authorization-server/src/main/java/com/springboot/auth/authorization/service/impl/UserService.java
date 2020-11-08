@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
+    private final OrganizationProvider organization;
+
     @Autowired
-    private OrganizationProvider organizationProvider;
+    public UserService(OrganizationProvider organization) {
+        this.organization = organization;
+    }
 
     @Override
     public User getByUniqueId(String uniqueId) {
-        return organizationProvider.getUserByUniqueId(uniqueId).getData();
+        return organization.getUserByUniqueId(uniqueId).getData();
     }
 }
