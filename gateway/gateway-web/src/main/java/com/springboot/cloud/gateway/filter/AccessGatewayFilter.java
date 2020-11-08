@@ -25,7 +25,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 @ComponentScan(basePackages = "com.springboot.cloud.auth.client")
 @Slf4j
-public class AccessGatewayFilter implements GlobalFilter, Ordered {
+public class AccessGatewayFilter implements GlobalFilter {
 
     private static final String X_CLIENT_TOKEN_USER = "x-client-token-user";
     private static final String X_CLIENT_TOKEN = "x-client-token";
@@ -102,8 +102,4 @@ public class AccessGatewayFilter implements GlobalFilter, Ordered {
         return serverWebExchange.getResponse().writeWith(Flux.just(buffer));
     }
 
-    @Override
-    public int getOrder() {
-        return 1;
-    }
 }
