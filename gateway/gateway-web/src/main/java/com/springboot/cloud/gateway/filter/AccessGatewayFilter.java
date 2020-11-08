@@ -21,6 +21,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * 请求url权限校验
+ * 注意：不能把这个过滤器的优先级设置的过高，否则还没有经过系统处理的URL会导致权限判断出错
  */
 @Configuration
 @ComponentScan(basePackages = "com.springboot.cloud.auth.client")
