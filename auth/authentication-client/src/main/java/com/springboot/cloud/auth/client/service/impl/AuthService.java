@@ -34,7 +34,7 @@ public class AuthService implements IAuthService {
      * 默认/oauth开头是不需要的
      */
     @Value("${gate.ignore.authentication.startWith}")
-    private final String ignoreUrls = "/oauth";
+    private String ignoreUrls = "/oauth";
 
     @Override
     public Result authenticate(String authentication, String url, String method) {

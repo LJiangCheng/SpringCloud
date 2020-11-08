@@ -21,11 +21,12 @@ import reactor.core.publisher.Mono;
 
 /**
  * 请求url权限校验
+ * 注意：不能把这个过滤器的优先级设置的过高，否则还没有经过系统处理的URL会导致权限判断出错
  */
 @Configuration
 @ComponentScan(basePackages = "com.springboot.cloud.auth.client")
 @Slf4j
-public class AccessGatewayFilter implements GlobalFilter, Ordered {
+public class AccessGatewayFilter implements GlobalFilter {
 
     private static final String X_CLIENT_TOKEN_USER = "x-client-token-user";
     private static final String X_CLIENT_TOKEN = "x-client-token";
@@ -102,8 +103,4 @@ public class AccessGatewayFilter implements GlobalFilter, Ordered {
         return serverWebExchange.getResponse().writeWith(Flux.just(buffer));
     }
 
-    @Override
-    public int getOrder() {
-        return 1;
-    }
 }
