@@ -98,7 +98,7 @@ public class AuthServiceTest {
 
     @Test
     public void testIgnoreAuthentication_假如配置的忽略前缀为oauth和open_当用户请求以open开头的url_那么返回返回true() {
-        //Assert.assertTrue(authService.ignoreAuthentication("/open/"));
+        Assert.assertTrue(authService.ignoreAuthentication("/open/"));
     }
 
     @Test
